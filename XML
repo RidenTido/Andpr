@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <EditText
+        android:id="@+id/num1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:inputType="number" >
+    </EditText>
+
+    <EditText
+        android:id="@+id/num2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/num1"
+        android:inputType="number" />
+
+    <Button
+        android:id="@+id/addButton"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/num2"
+        android:layout_marginTop="54dp"
+        android:text="+" />
+
+    <EditText
+        android:id="@+id/result"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/num2"
+        android:text="result" >
+
+        <requestFocus />
+    </EditText>
+
+    <Button
+        android:id="@+id/multiplyButton"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/addButton"
+        android:layout_marginTop="106dp"
+        android:text="*" />
+
+    <Button
+        android:id="@+id/divideButton"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/multiplyButton"
+        android:layout_marginLeft="18dp"
+        android:layout_toRightOf="@+id/multiplyButton"
+        android:text="/" />
+
+    <Button
+        android:id="@+id/subtractButton"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/multiplyButton"
+        android:layout_centerVertical="true"
+        android:text="-" />
+
+</RelativeLayout>
