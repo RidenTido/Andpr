@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+<TextView 
+ android:id="@+id/textView" 
+ android:layout_width="wrap_content" 
+ android:layout_height="wrap_content" 
+ android:text="Welcome to Android!" 
+ android:textSize="24sp" 
+ android:textColor="#000000" /> 
+ <Button
+ android:id="@+id/btnFontColor" 
+ android:layout_width="wrap_content" 
+ android:layout_height="wrap_content" 
+ android:text="Change Font Color" /> 
+ <Button
+ android:id="@+id/btnFontStyle" 
+ android:layout_width="wrap_content" 
+ android:layout_height="wrap_content" 
+ android:text="Toggle Bold/Italic" /> 
+ <Button
+ android:id="@+id/btnIncreaseFont" 
+ android:layout_width="wrap_content" 
+ android:layout_height="wrap_content" 
+ android:text="Increase Font Size" /> 
+ <Button
+ android:id="@+id/btnDecreaseFont" 
+ android:layout_width="wrap_content" 
+ android:layout_height="wrap_content" 
+ android:text="Decrease Font Size" /> 
+
+</LinearLayout>
