@@ -1,0 +1,43 @@
+package com.Student_Detail;
+
+import android.app.Activity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
+import android.widget.EditText;
+import android.widget.Toast;
+
+public class Student_DetailActivity extends Activity {
+
+    private EditText nameInput, ageInput, emailInput, courseInput;
+    private Button registerButton;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.main);
+
+        nameInput = (EditText) findViewById(R.id.nameInput);
+        ageInput = (EditText) findViewById(R.id.ageInput);
+        emailInput = (EditText) findViewById(R.id.emailInput);
+        courseInput = (EditText) findViewById(R.id.courseInput);
+        registerButton = (Button) findViewById(R.id.registerbutton);
+
+        registerButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+ 
+                String name = nameInput.getText().toString();
+                String age = ageInput.getText().toString();
+                String email = emailInput.getText().toString();
+                String course = courseInput.getText().toString();
+
+                if (name.isEmpty() || age.isEmpty() || email.isEmpty() || course.isEmpty()) {
+                    Toast.makeText(Student_DetailActivity.this,"please fill all the fields",Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(Student_DetailActivity.this,"Register Successfully\n"+"Name:"+name +"\nAge:"+age+"\nEmail:"+email+"\nCourse:"+course,Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+    }
+}
