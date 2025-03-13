@@ -66,3 +66,51 @@ public class ExplicitIndentActivity extends Activity {
 
 }
 
+2. Activity:
+package com.explicitIndent;
+
+
+
+import android.app.Activity;
+
+import android.os.Bundle;
+
+import android.widget.*;
+
+import android.content.*;
+
+public class SecondActivity extends Activity  {
+
+	
+
+	TextView receivedText;
+
+	
+
+    public void onCreate(Bundle savedInstanceState) {
+
+	  super.onCreate(savedInstanceState);
+
+	  setContentView(R.layout.secondactivity); 
+
+	  
+
+	  receivedText = (TextView) findViewById(R.id.receive);
+
+	  
+
+	  Intent intent = getIntent();
+
+	  String message = intent.getStringExtra("Message");
+
+	  
+
+	  receivedText.setText(message);
+
+	  
+
+	}
+
+}
+
+
