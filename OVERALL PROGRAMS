@@ -1,0 +1,1864 @@
+1.	Hello World
+
+Java Code
+
+package com.button;
+
+
+
+import android.app.Activity;
+
+import android.os.Bundle;
+
+import android.view.View;
+
+import android.widget.*;
+
+
+
+public class Button_clickActivity extends Activity {
+
+	
+
+	TextView text;
+
+	Button btn;
+
+    @Override
+
+    public void onCreate(Bundle savedInstanceState) {
+
+        super.onCreate(savedInstanceState);
+
+        setContentView(R.layout.ma
+
+        text = (TextView) findViewById(R.id.text);
+
+        btn = (Button) findViewById(R.id.btn);
+
+        
+
+        btn.setOnClickListener(new View.OnClickListener() {
+
+			
+
+			public void onClick(View arg0) {
+
+				 text.setText("Button Clicked");
+
+	             text.setVisibility(View.VISIBLE);
+
+			}
+
+		});
+
+        }
+
+}
+
+XML Code:
+
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    android:layout_width="fill_parent"
+
+    android:layout_height="fill_parent"
+
+    android:orientation="vertical" 
+
+    android:gravity="center">
+
+
+
+    <TextView
+
+        android:id="@+id/text"
+
+        android:layout_width="wrap_content"
+
+        android:layout_height="wrap_content"
+
+        android:text="Large Text"
+
+        android:paddingBottom="30dp"
+
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+
+
+    <Button
+
+        android:id="@+id/btn"
+
+        android:layout_width="wrap_content"
+
+        android:layout_height="wrap_content"
+
+        android:text="Button" />
+
+
+
+</LinearLayout>
+
+
+
+2.	Student Registration Form
+
+Java Code
+
+package com.registration;
+
+
+
+import android.app.Activity;
+
+import android.os.Bundle;
+
+import android.view.View;
+
+import android.widget.Button;
+
+import android.widget.CheckBox;
+
+import android.widget.EditText;
+
+import android.widget.RadioButton;
+
+import android.widget.RadioGroup;
+
+import android.widget.*;
+
+public class StudentRegistrationActivity extends Activity {
+
+
+
+    private EditText etName, etAge;
+
+    private RadioGroup rgGender;
+
+    private CheckBox cbMath, cbScience, cbEnglish;
+
+    private Button btnSubmit;
+
+
+
+    @Override
+
+    protected void onCreate(Bundle savedInstanceState) {
+
+        super.onCreate(savedInstanceState);
+
+        setContentView(R.layout.main);
+
+
+
+        // Initialize views
+
+        etName = (EditText)findViewById(R.id.et_name);
+
+        etAge = (EditText)findViewById(R.id.et_age);
+
+        rgGender = (RadioGroup)findViewById(R.id.rg_gender);
+
+        cbMath = (CheckBox)findViewById(R.id.cb_math);
+
+        cbScience = (CheckBox)findViewById(R.id.cb_science);
+
+        cbEnglish = (CheckBox)findViewById(R.id.cb_english);
+
+        btnSubmit = (Button)findViewById(R.id.btn_submit);
+
+
+
+        // Set onClickListener for the submit button
+
+        btnSubmit.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View v) {
+
+                String name = etName.getText().toString();
+
+                String age = etAge.getText().toString();
+
+                int selectedGenderId = rgGender.getCheckedRadioButtonId();
+
+                RadioButton selectedGender = (RadioButton)findViewById(selectedGenderId);
+
+
+
+                String gender = selectedGender != null ? selectedGender.getText().toString() : "Not selected";
+
+                StringBuilder subjects = new StringBuilder();
+
+
+
+                if (cbMath.isChecked()) {
+
+                    subjects.append("Mathematics, ");
+
+                }
+
+                if (cbScience.isChecked()) {
+
+                    subjects.append("Science, ");
+
+                }
+
+                if (cbEnglish.isChecked()) {
+
+                    subjects.append("English, ");
+
+                }
+
+
+
+                if (subjects.length() > 0) {
+
+                    subjects.setLength(subjects.length() - 2); // Remove the last comma
+
+                } else {
+
+                    subjects.append("None selected");
+
+                }
+
+                
+
+
+
+                // Show the collected data in a Toast message
+
+                String result = "Name: " + name + "\nAge: " + age + "\nGender: " + gender + "\nSubjects: " + subjects;
+
+                Toast.makeText(StudentRegistrationActivity.this, result, Toast.LENGTH_LONG).show();
+
+            }
+
+        });
+
+    }
+
+}
+
+
+
+XML Code:
+
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    android:layout_width="match_parent"
+
+    android:layout_height="match_parent"
+
+    android:orientation="vertical"
+
+    android:padding="16dp">
+
+
+
+    <TextView
+
+        android:id="@+id/tv_name"
+
+        android:layout_width="wrap_content"
+
+        android:layout_height="wrap_content"
+
+        android:text="Name"
+
+        android:textSize="16sp" />
+
+
+
+    
+
+<EditText
+
+        android:id="@+id/et_name"
+
+        android:layout_width="match_parent"
+
+        android:layout_height="wrap_content"
+
+        android:hint="Enter your name" />
+
+
+
+    <TextView
+
+        android:id="@+id/tv_age"
+
+        android:layout_width="wrap_content"
+
+        android:layout_height="wrap_content"
+
+        android:text="Age"
+
+        android:textSize="16sp" />
+
+
+
+    <EditText
+
+        android:id="@+id/et_age"
+
+        android:layout_width="match_parent"
+
+        android:layout_height="wrap_content"
+
+        android:hint="Enter your age"
+
+        android:inputType="number" />
+
+
+
+    <TextView
+
+        android:id="@+id/tv_gender"
+
+        android:layout_width="wrap_content"
+
+        android:layout_height="wrap_content"
+
+        android:text="Gender"
+
+        android:textSize="16sp" />
+
+ <RadioGroup
+
+        android:id="@+id/rg_gender"
+
+        android:layout_width="wrap_content"
+
+        android:layout_height="wrap_content"
+
+        android:orientation="horizontal">
+
+
+
+        <RadioButton
+
+            android:id="@+id/rb_male"
+
+            android:layout_width="wrap_content"
+
+            android:layout_height="wrap_content"
+
+            android:text="Male" />
+
+
+
+        <RadioButton
+
+            android:id="@+id/rb_female"
+
+            android:layout_width="wrap_content"
+
+            android:layout_height="wrap_content"
+
+            android:text="Female" />
+
+    </RadioGroup>
+
+
+
+    <TextView
+
+        android:id="@+id/tv_subjects"
+
+        android:layout_width="wrap_content"
+
+        android:layout_height="wrap_content"
+
+        android:text="Subjects"
+
+        android:textSize="16sp" />
+
+
+
+    <CheckBox
+
+        android:id="@+id/cb_math"
+
+        android:layout_width="wrap_content"
+
+        android:layout_height="wrap_content"
+
+        android:text="Mathematics" />
+
+
+
+    
+
+<CheckBox
+
+        android:id="@+id/cb_science"
+
+        android:layout_width="wrap_content"
+
+        android:layout_height="wrap_content"
+
+        android:text="Science" />
+
+
+
+    <CheckBox
+
+        android:id="@+id/cb_english"
+
+        android:layout_width="wrap_content"
+
+        android:layout_height="wrap_content"
+
+        android:text="English" />
+
+
+
+    <Button
+
+        android:id="@+id/btn_submit"
+
+        android:layout_width="wrap_content"
+
+        android:layout_height="wrap_content"
+
+        android:text="Submit" />
+
+</LinearLayout>
+
+
+
+
+
+3.	Calculator
+
+Java Code
+
+package com.calculator;
+
+
+
+import android.app.Activity;
+
+import android.os.Bundle;
+
+import android.view.View;
+
+import android.widget.Button;
+
+import android.widget.EditText;
+
+
+
+public class CalculatorActivity extends Activity {
+
+	
+
+	EditText number1, number2, result;
+
+	Button addbtn, subbtn, mulbtn, divbtn;
+
+	
+
+    @Override
+
+    public void onCreate(Bundle savedInstanceState) {
+
+        super.onCreate(savedInstanceState);
+
+        setContentView(R.layout.main);
+
+        
+
+        number1 = (EditText)findViewById(R.id.num1);
+
+        number2 = (EditText)findViewById(R.id.num2);
+
+        result = (EditText)findViewById(R.id.result);
+
+        addbtn = (Button)findViewById(R.id.addbtn);
+
+        subbtn = (Button)findViewById(R.id.subbtn);
+
+        mulbtn = (Button)findViewById(R.id.mulbtn);
+
+        divbtn = (Button)findViewById(R.id.divbtn);
+
+        
+
+        addbtn.setOnClickListener(new View.OnClickListener() {
+
+			
+
+			public void onClick(View v) {
+
+				calculate('+');
+
+			}
+
+		});
+
+
+
+        subbtn.setOnClickListener(new View.OnClickListener() {
+
+			
+
+			public void onClick(View v) {
+
+				calculate('-');
+
+			}
+
+		});
+
+        
+
+        mulbtn.setOnClickListener(new View.OnClickListener() {
+
+			
+
+			public void onClick(View v) {
+
+				calculate('*');
+
+				}
+
+		});
+
+
+
+        divbtn.setOnClickListener(new View.OnClickListener() {
+
+	
+
+			public void onClick(View v) {
+
+				calculate('/');
+
+			}
+
+        });
+
+}
+
+    private void calculate(char oprator){
+
+    	String num1Str = number1.getText().toString();
+
+    	String num2Str = number2.getText().toString();
+
+    	
+
+    	if(num1Str.isEmpty()|| num2Str.isEmpty()){
+
+    		result.setText("Please Enter Both");
+
+    		return;
+
+    	}
+
+    	double num1 = Double.parseDouble(num1Str);
+
+    	double num2 = Double.parseDouble(num2Str);
+
+    	double resulttext;
+
+    
+
+    	switch(oprator){
+
+    	case'+':
+
+    		resulttext = num1+num2;
+
+    		break;
+
+    	case'-':
+
+    		resulttext = num1-num2;
+
+    		break;
+
+    	case'*':
+
+    		resulttext = num1*num2;
+
+    		break;
+
+    	case'/':
+
+    		if(num2==0){
+
+    			result.setText("Cannot divide by zero");
+
+    			return;
+
+    		}
+
+    		resulttext = num1/num2;
+
+    		break;
+
+    	default:
+
+    		result.setText("Invalid operator");
+
+    		return;
+
+    	}
+
+    	result.setText(""+resulttext);
+
+    }
+
+}
+
+XML Code:
+
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    android:layout_width="fill_parent"
+
+    android:layout_height="fill_parent"
+
+    android:orientation="vertical" >
+
+
+
+    <EditText
+
+        android:id="@+id/num1"
+
+        android:layout_width="match_parent"
+
+        android:layout_height="wrap_content"
+
+        android:inputType="number" />
+
+
+
+    <EditText
+
+        android:id="@+id/num2"
+
+        android:layout_width="match_parent"
+
+        android:layout_height="wrap_content"
+
+        android:layout_alignParentLeft="true"
+
+        android:layout_below="@+id/num1"
+
+        android:inputType="number" />
+
+
+
+    <EditText
+
+        android:id="@+id/result"
+
+        android:layout_width="wrap_content"
+
+        android:layout_height="wrap_content"
+
+        android:layout_alignParentLeft="true"
+
+        android:layout_below="@+id/num2"
+
+        android:layout_marginLeft="14dp"
+
+        android:text="@string/result" />
+
+
+
+    <Button
+
+        android:id="@+id/addbtn"
+
+        android:layout_width="wrap_content"
+
+        android:layout_height="wrap_content"
+
+        android:layout_alignLeft="@+id/result"
+
+        android:layout_below="@+id/result"
+
+        android:layout_marginTop="24dp"
+
+        android:text="@string/add" />
+
+
+
+    <Button
+
+        android:id="@+id/subbtn"
+
+        android:layout_width="wrap_content"
+
+        android:layout_height="wrap_content"
+
+        android:layout_alignTop="@+id/addbtn"
+
+        android:layout_toRightOf="@+id/result"
+
+        android:text="@string/sub" />
+
+
+
+    <Button
+
+        android:id="@+id/mulbtn"
+
+        android:layout_width="wrap_content"
+
+        android:layout_height="wrap_content"
+
+        android:layout_alignTop="@+id/subbtn"
+
+        android:layout_marginLeft="30dp"
+
+        android:layout_toRightOf="@+id/subbtn"
+
+        android:text="@string/mul" />
+
+
+
+    <Button
+
+        android:id="@+id/divbtn"
+
+        android:layout_width="wrap_content"
+
+        android:layout_height="wrap_content"
+
+        android:layout_alignTop="@+id/mulbtn"
+
+        android:layout_marginLeft="19dp"
+
+        android:layout_toRightOf="@+id/mulbtn"
+
+        android:text="@string/div" />
+
+</RelativeLayout>
+
+
+
+4.	Login Form:
+
+Java Code
+
+package com.login;
+
+
+
+import android.app.Activity;
+
+import android.content.Intent;
+
+import android.os.Bundle;
+
+import android.view.View;
+
+import android.widget.TextView;
+
+import android.widget.EditText;
+
+import android.widget.Button;
+
+import android.widget.Toast;
+
+
+
+public class LayoutLoginActivity extends Activity {
+
+    
+
+    TextView register; 
+
+    EditText username, password;
+
+    Button login;
+
+    String validUsername = "user";
+
+    String validPassword = "pass";
+
+    
+
+    @Override
+
+    public void onCreate(Bundle savedInstanceState) {
+
+        super.onCreate(savedInstanceState);
+
+        setContentView(R.layout.main);
+
+        
+
+        register = (TextView)findViewById(R.id.register);
+
+        username = (EditText) findViewById(R.id.username);
+
+        password = (EditText) findViewById(R.id.password);
+
+        login = (Button)findViewById(R.id.loginbtn);
+
+        
+
+        register.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View view) {
+
+                Toast.makeText(LayoutLoginActivity.this, "Registering...", Toast.LENGTH_SHORT).show();
+
+                Intent intent = new Intent(LayoutLoginActivity.this, RegisterActivity.class);
+
+                startActivity(intent);
+
+            }
+
+        });
+
+        
+
+        login.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View view) {
+
+                // Get entered username and password
+
+                String enteredUsername = username.getText().toString();
+
+                String enteredPassword = password.getText().toString();
+
+                
+
+                if (enteredUsername.equals("alice") && enteredPassword.equals("12345")) {
+
+                    // If login is successful
+
+                    Toast.makeText(LayoutLoginActivity.this, "You have been logged in", Toast.LENGTH_SHORT).show();
+
+                    
+
+                    // Redirect to another activity (e.g., HomeActivity or MainActivity)
+
+                    Intent intent = new Intent(LayoutLoginActivity.this, secondActivity.class);
+
+                    startActivity(intent);
+
+                } else {
+
+                    // If login fails, show an error message
+
+                    Toast.makeText(LayoutLoginActivity.this, "Invalid username or password", Toast.LENGTH_SHORT).show();
+
+                }
+
+            }
+
+        });
+
+    }
+
+}
+
+
+
+XML Code:
+
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    android:layout_width="fill_parent"
+
+    android:layout_height="fill_parent"
+
+    android:orientation="vertical" 
+
+    android:gravity="center">
+
+
+
+    <TextView
+
+        android:id="@+id/login"
+
+        android:layout_width="wrap_content"
+
+        android:layout_height="wrap_content"
+
+        android:text="Login"
+
+        android:paddingBottom="10dp" />
+
+
+
+    <EditText
+
+        android:id="@+id/username"
+
+        android:layout_width="match_parent"
+
+        android:layout_height="wrap_content" 
+
+        android:hint="Username"
+
+        android:padding="10dp">
+
+    </EditText>
+
+    
+
+    <EditText
+
+        android:id="@+id/password"
+
+        android:layout_width="match_parent"
+
+        android:layout_height="wrap_content" 
+
+        android:hint="Password"
+
+        android:padding="10dp">
+
+    </EditText>
+
+
+
+    <LinearLayout
+
+        android:id="@+id/linearLayout1"
+
+        android:layout_width="match_parent"
+
+        android:layout_height="wrap_content"
+
+        android:orientation="horizontal" >
+
+
+
+        <TextView
+
+            android:id="@+id/line_for_register"
+
+            android:layout_width="wrap_content"
+
+            android:layout_height="wrap_content"
+
+            android:text="Don't have the account?"
+
+            android:paddingLeft="15dp" />
+
+
+
+        <TextView
+
+            android:id="@+id/register"
+
+            android:layout_width="wrap_content"
+
+            android:layout_height="wrap_content"
+
+            android:text="Click here"
+
+            android:paddingLeft="20dp" />
+
+        
+
+    </LinearLayout>
+
+
+
+    <Button
+
+        android:id="@+id/loginbtn"
+
+        android:layout_width="wrap_content"
+
+        android:layout_height="wrap_content"
+
+        android:text="Login"
+
+        android:layout_marginTop="15dp" />
+
+
+
+</LinearLayout>
+
+ 
+
+5.	Text Manipulation – Style, Color, Size
+
+Java Code
+
+package com.font;
+
+
+
+import android.app.Activity;
+
+import android.graphics.Color;
+
+import android.graphics.Typeface;
+
+import android.os.Bundle;
+
+import android.view.View;
+
+import android.widget.*;
+
+
+
+public class FontActivity extends Activity {
+
+	
+
+	TextView text;
+
+	Button color, font_style, size_inc, size_dec;
+
+	boolean isBold = false, isItalic = false;
+
+	int colorIndex = 0;
+
+	float font_size = 24;
+
+	int[] colors={Color.RED, Color.BLUE, Color.GREEN, Color.MAGENTA};
+
+    @Override
+
+    public void onCreate(Bundle savedInstanceState) {
+
+        super.onCreate(savedInstanceState);
+
+        setContentView(R.layout.main);
+
+        
+
+        text = (TextView) findViewById(R.id.message);
+
+        color = (Button) findViewById(R.id.font_color);
+
+        font_style = (Button) findViewById(R.id.font_style);
+
+        size_inc = (Button) findViewById(R.id.size_inc);
+
+        size_dec = (Button) findViewById(R.id.size_dec);
+
+        color.setOnClickListener(new View.OnClickListener() {
+
+				public void onClick(View arg0) {
+
+				text.setTextColor(colors[colorIndex]);
+
+				colorIndex = (colorIndex + 1)%colors.length;
+
+			}
+
+		});
+
+        
+
+        font_style.setOnClickListener(new View.OnClickListener() {
+
+			
+
+			public void onClick(View arg0) {
+
+				isBold = !isBold;
+
+				isItalic = !isItalic;
+
+				
+
+				int style = (isBold ? Typeface.BOLD : 0)| (isItalic ? Typeface.ITALIC : 0);
+
+				
+
+				text.setTypeface(Typeface.DEFAULT,style);
+
+				}
+
+		});
+
+        
+
+        size_inc.setOnClickListener(new View.OnClickListener() {
+
+			
+
+			public void onClick(View arg0) {
+
+				font_size += 2;
+
+				text.setTextSize(font_size);
+
+			}
+
+	});
+
+        size_dec.setOnClickListener(new View.OnClickListener() {
+
+			
+
+			public void onClick(View arg0) {
+
+				if(font_size>10){
+
+					font_size -=2;
+
+					text.setTextSize(font_size);
+
+				}
+
+			}
+
+		});
+
+    }
+
+}
+
+
+
+XML Code:
+
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    android:layout_width="fill_parent"
+
+    android:layout_height="fill_parent"
+
+    android:orientation="vertical"
+
+    android:layout_gravity="center" >
+
+
+
+    <TextView
+
+        android:id="@+id/message"
+
+        android:layout_width="wrap_content"
+
+        android:layout_height="wrap_content"
+
+        android:text="Large Text"
+
+        android:textAppearance="?android:attr/textAppearanceLarge"
+
+        android:layout_gravity="center"
+
+        android:padding="30dp" />
+
+    
+
+    <LinearLayout 
+
+        android:layout_width="wrap_content"
+
+        android:layout_height="wrap_content"
+
+        android:orientation="horizontal"
+
+        android:padding="30dp"
+
+        android:layout_gravity="center" >
+
+        <Button
+
+        android:id="@+id/font_color"
+
+        android:layout_width="wrap_content"
+
+        android:layout_height="wrap_content"
+
+        android:text="Color" />
+
+
+
+    <Button
+
+        android:id="@+id/font_style"
+
+        android:layout_width="wrap_content"
+
+        android:layout_height="wrap_content"
+
+        android:text="Style" />
+
+    </LinearLayout>
+
+	
+
+    <LinearLayout 
+
+        android:layout_width="wrap_content"
+
+        android:layout_height="wrap_content"
+
+        android:orientation="horizontal" 
+
+        android:padding="30dp"
+
+        android:layout_gravity="center">
+
+    
+
+        <Button
+
+        android:id="@+id/size_inc"
+
+        android:layout_width="wrap_content"
+
+        android:layout_height="wrap_content"
+
+        android:text="Increase" />
+
+
+
+    <Button
+
+        android:id="@+id/size_dec"
+
+        android:layout_width="wrap_content"
+
+        android:layout_height="wrap_content"
+
+        android:text="Decrease" />
+
+                
+
+    </LinearLayout>
+
+</LinearLayout>
+
+
+
+6.	Change Background
+
+package com.bg_color;
+
+
+
+import android.app.Activity;
+
+import android.app.AlertDialog;
+
+import android.content.DialogInterface;  // Ensure this import is here
+
+import android.os.Bundle;
+
+import android.view.View;
+
+import android.widget.*;
+
+import android.graphics.*;
+
+
+
+public class Bg_colorActivity extends Activity {
+
+    
+
+    LinearLayout mainlayout;
+
+    Button changecolor;
+
+    
+
+
+
+    @Override
+
+    public void onCreate(Bundle savedInstanceState) {
+
+        super.onCreate(savedInstanceState);
+
+        setContentView(R.layout.main);
+
+        
+
+        mainlayout = (LinearLayout)findViewById(R.id.mainlayout);
+
+        changecolor = (Button)findViewById(R.id.changebgcolor);
+
+        
+
+        changecolor.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View arg0) {
+
+                showColorSelectionDialog();
+
+            }
+
+
+
+            private void showColorSelectionDialog() {
+
+                final String[] colorNames = {"Red", "Green", "Blue", "Yellow", "White", "Black"};
+
+                
+
+                final int[] colorValues = {Color.RED, Color.GREEN, Color.BLUE, Color.YELLOW, Color.WHITE, Color.BLACK};
+
+                
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(Bg_colorActivity.this);
+
+                builder.setTitle("Choose a Color");
+
+                
+
+                builder.setItems(colorNames, new DialogInterface.OnClickListener() {
+
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        // Change the background color based on the selected color
+
+                        mainlayout.setBackgroundColor(colorValues[which]);
+
+                    }
+
+                });
+
+                builder.show();
+
+            }
+
+        });
+
+    }
+
+}
+
+
+
+XML Code:
+
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    android:layout_width="fill_parent"
+
+    android:layout_height="fill_parent"
+
+    android:orientation="vertical" 
+
+    android:gravity="center"
+
+    android:id="@+id/mainlayout">
+
+
+
+    <Button
+
+        android:id="@+id/changebgcolor"
+
+        android:layout_width="wrap_content"
+
+        android:layout_height="wrap_content"
+
+        android:text="Change Color"
+
+        android:padding="30dp"
+
+        android:layout_gravity="center" />
+
+
+
+</LinearLayout>
+
+
+
+7.	Image Manipulation
+
+package com.image;
+
+
+
+import android.app.Activity;
+
+import android.os.Bundle;
+
+import android.view.View;
+
+import android.widget.*;
+
+
+
+public class Image_manipulationActivity extends Activity {
+
+	
+
+	ImageView imageView;
+
+	Button prev, next;
+
+	
+
+	int[] images = {R.drawable.lotus,R.drawable.rainbow,R.drawable.violet};
+
+	
+
+	int currentIndex= 0;
+
+   @Override
+
+    public void onCreate(Bundle savedInstanceState) {
+
+        super.onCreate(savedInstanceState);
+
+        setContentView(R.layout.main);
+
+        
+
+        imageView =(ImageView) findViewById(R.id.image);
+
+        prev = (Button) findViewById(R.id.prev);
+
+        next = (Button) findViewById(R.id.next);
+
+        
+
+        prev.setOnClickListener(new View.OnClickListener() {
+
+			
+
+			public void onClick(View arg0) {
+
+				if(currentIndex>0){
+
+					currentIndex--;
+
+					imageView.setImageResource(images[currentIndex]);
+
+				}
+
+			}
+
+		});
+
+        
+
+        next.setOnClickListener(new View.OnClickListener() {
+
+			
+
+			public void onClick(View arg0) {
+
+				if(currentIndex<images.length-1){
+
+					currentIndex++;
+
+					imageView.setImageResource(images[currentIndex]);
+
+				}
+
+			}
+
+		});
+
+        imageView.setImageResource(images[currentIndex]);
+
+    }
+
+}
+
+
+
+XML Code:
+
+
+
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    android:layout_width="fill_parent"
+
+    android:layout_height="fill_parent"
+
+    android:orientation="vertical" >
+
+
+
+    <ImageView
+
+        android:id="@+id/image"
+
+        android:layout_width="250dp"
+
+        android:layout_height="250dp"
+
+        android:scaleType="fitCenter"
+
+        android:src="@drawable/lotus"
+
+        android:padding="30dp" />
+
+
+
+    <LinearLayout
+
+        android:id="@+id/linearLayout1"
+
+        android:layout_width="match_parent"
+
+        android:layout_height="wrap_content" >
+
+
+
+        <Button
+
+            android:id="@+id/prev"
+
+            android:layout_width="wrap_content"
+
+            android:layout_height="wrap_content"
+
+            android:text="Previous" />
+
+
+
+        <Button
+
+            android:id="@+id/next"
+
+            android:layout_width="wrap_content"
+
+            android:layout_height="wrap_content"
+
+            android:text="Next" />
+
+
+
+    </LinearLayout>
+
+
+
+</LinearLayout>
+
+
+
+8.	Implicit Indent
+
+Java Code
+
+package com.implicit;
+
+
+
+import android.app.Activity;
+
+import android.content.Intent;
+
+import android.view.View;
+
+import android.widget.*;
+
+import android.net.Uri;
+
+import android.os.Bundle;
+
+
+
+public class Implicit_intentActivity extends Activity {
+
+	
+
+	Button call;
+
+	
+
+    /** Called when the activity is first created. */
+
+    @Override
+
+    public void onCreate(Bundle savedInstanceState) {
+
+        super.onCreate(savedInstanceState);
+
+        setContentView(R.layout.main);
+
+        
+
+        call = (Button)findViewById(R.id.call);
+
+        
+
+        call.setOnClickListener(new View.OnClickListener() {
+
+			
+
+			public void onClick(View arg0) {
+
+				Intent intent = new Intent(Intent.ACTION_DIAL);
+
+				
+
+				intent.setData(Uri.parse("tel:7550372558"));
+
+				startActivity(intent);
+
+			}
+
+		});
+
+            }
+
+}
+
+XML Code:
+
+
+
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    android:layout_width="fill_parent"
+
+    android:layout_height="fill_parent"
+
+    android:orientation="vertical" >
+
+
+
+    <Button
+
+        android:id="@+id/call"
+
+        android:layout_width="wrap_content"
+
+        android:layout_height="wrap_content"
+
+        android:text="Dial Number" />
+
+
+
+</LinearLayout>
+
+
+
+9.	Explicit Indent:
+
+i)	Main Activity
+
+Java Code:
+
+package com.explicitIndent;
+
+
+
+import android.app.Activity;
+
+import android.content.Intent;
+
+import android.os.Bundle;
+
+import android.view.View;
+
+import android.widget.*;
+
+
+
+public class ExplicitIndentActivity extends Activity {
+
+	
+
+	Button nxtpage;
+
+	EditText textnxt;
+
+	
+
+    @Override
+
+    public void onCreate(Bundle savedInstanceState) {
+
+        super.onCreate(savedInstanceState);
+
+        setContentView(R.layout.main);
+
+        
+
+        textnxt = (EditText) findViewById(R.id.nxttext);
+
+        nxtpage = (Button) findViewById(R.id.nxtpage);
+
+        
+
+        nxtpage.setOnClickListener(new View.OnClickListener() {
+
+			
+
+			public void onClick(View arg0) {							
+
+				String text = textnxt.getText().toString();
+
+				
+
+				Intent intent = new Intent(ExplicitIndentActivity.this,SecondActivity.class);
+
+				intent.putExtra("Message", text);
+
+				
+
+				startActivity(intent);
+
+				}
+
+		});
+
+        }
+
+}
+
+
+
+XML Code:
+
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    android:layout_width="fill_parent"
+
+    android:layout_height="fill_parent"
+
+    android:orientation="vertical" >
+
+
+
+    <EditText
+
+        android:id="@+id/nxttext"
+
+        android:layout_width="match_parent"
+
+        android:layout_height="wrap_content" >
+
+
+
+        <requestFocus />
+
+    </EditText>
+
+
+
+    <Button
+
+        android:id="@+id/nxtpage"
+
+        android:layout_width="wrap_content"
+
+        android:layout_height="wrap_content"
+
+        android:text="Go to Next Page" />
+
+
+
+</LinearLayout>
+
+
+
+
+
+
+
+ii)	Second Activity
+
+Java Code
+
+package com.explicitIndent;
+
+
+
+import android.app.Activity;
+
+import android.os.Bundle;
+
+import android.widget.*;
+
+import android.content.*;
+
+public class SecondActivity extends Activity  {
+
+	
+
+	TextView receivedText;
+
+	
+
+    public void onCreate(Bundle savedInstanceState) {
+
+	  super.onCreate(savedInstanceState);
+
+	  setContentView(R.layout.secondactivity); 
+
+	  
+
+	  receivedText = (TextView) findViewById(R.id.receive);
+
+	  
+
+	  Intent intent = getIntent();
+
+	  String message = intent.getStringExtra("Message");
+
+	  
+
+	  receivedText.setText(message);
+
+	  
+
+	}
+
+}
+
+
+
+XML Code:
+
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    android:layout_width="match_parent"
+
+    android:layout_height="match_parent"
+
+    android:orientation="vertical" >
+
+
+
+    <TextView
+
+        android:id="@+id/receive"
+
+        android:layout_width="wrap_content"
+
+        android:layout_height="wrap_content"
+
+        android:text="Large Text"
+
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+
+
+</LinearLayout>
+
