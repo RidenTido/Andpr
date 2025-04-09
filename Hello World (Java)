@@ -1,0 +1,27 @@
+package com.button;
+
+import android.app.Activity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.*;
+
+public class Button_clickActivity extends Activity {
+	
+	TextView text;
+	Button btn;
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.ma
+        text = (TextView) findViewById(R.id.text);
+        btn = (Button) findViewById(R.id.btn);
+        
+        btn.setOnClickListener(new View.OnClickListener() {
+			
+			public void onClick(View arg0) {
+				 text.setText("Button Clicked");
+	             text.setVisibility(View.VISIBLE);
+			}
+		});
+        }
+}
